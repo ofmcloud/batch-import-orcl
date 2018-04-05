@@ -1,0 +1,32 @@
+# 写库
+spring:
+  datasource:
+    jdbc-url: jdbc:mysql://10.0.0.240:3306/yuanjuren_db?characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+
+# 读库
+custom:
+  write:
+    jdbc-url: jdbc:oracle:thin:@localhost:1521:orcl
+    username: system
+    password: root
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+
+#### 日志配置 ################################################################################
+logging:
+  config: classpath:logback-spring.xml
+  path: /home/log/orcl-import
+
+compare:
+  host: http://10.0.0.240:59992
+
+
+#### FastFDS文件系统连接配置 ###################################################################
+fdfs:
+  soTimeout: 1500
+  connectTimeout: 600
+  trackerList:            #TrackerList参数,支持多个
+    - 10.0.0.240:22122
+#    - 192.168.0.202:22122
