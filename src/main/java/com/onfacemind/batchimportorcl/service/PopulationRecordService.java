@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.concurrent.CountDownLatch;
 
 @Service
 public class PopulationRecordService {
@@ -38,7 +39,7 @@ public class PopulationRecordService {
     @Autowired
     CompareService compareService;
 
-    public int saveRecord(Person person,int total,Area area){
+    public int saveRecord(Person person, int total, Area area, CountDownLatch countDownLatch){
         byte[] photo = person.getPhoto();
         if (photo != null && photo.length > 0){
 
@@ -84,6 +85,7 @@ public class PopulationRecordService {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                countDownLatch.countDown();
             }
         }
 

@@ -51,7 +51,7 @@ public class TestDataSource extends BatchImportOrclApplicationTests{
     public void testRead(){
         String sql = "SELECT A1.\"NAME\",A1.IDCARD,A1.ZP FROM (SELECT \"TEST\".*,ROWNUM rn FROM \"TEST\") A1 WHERE rn between 1 and 10";
 
-        List<Person> results = readJdbcTemplate.query(sql, new PersonRowMapper());
+        List<Person> results = readJdbcTemplate.query(sql, new PersonRowMapper(null));
 
         System.out.println(results);
 
